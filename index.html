@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pandian G K — Executive & Technical Authority</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #0a0e27;
+      --navy: #1a1f3a;
+      --charcoal: #2d3142;
+      --gold: #d4af37;
+      --platinum: #e8e8e8;
+      --white: #ffffff;
+      --light-gray: #f7f7f7;
+      --accent: #1e90ff;
+      --border: #3a3f52;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: #b0b5c8;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--navy);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--platinum);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 39, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .nav-links a {
+      color: #b0b5c8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1001;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+
+    .cta-nav {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      letter-spacing: 1px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+      text-transform: uppercase;
+    }
+
+    .cta-nav:hover {
+      background: var(--platinum);
+      transform: translateY(-3px);
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(30, 144, 255, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      z-index: 10;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: var(--platinum);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      color: #b0b5c8;
+      max-width: 700px;
+      margin: 2rem auto;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 2.2rem;
+      border: none;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      background: var(--platinum);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--platinum);
+      color: var(--platinum);
+    }
+
+    /* Credentials Bar */
+    .credentials-bar {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .credential-item {
+      text-align: center;
+    }
+
+    .credential-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .credential-label {
+      font-size: 0.8rem;
+      color: #b0b5c8;
+      letter-spacing: 0.5px;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 6rem 3rem;
+      position: relative;
+    }
+
+    .section-header {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .section-label {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #b0b5c8;
+      line-height: 1.8;
+    }
+
+    /* Executive Summary */
+    #executive {
+      background: var(--navy);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .executive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .executive-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .executive-content p {
+      font-size: 0.95rem;
+      color: #b0b5c8;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .highlights {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 2px solid var(--gold);
+      border-radius: 2px;
+    }
+
+    .highlight-icon {
+      color: var(--gold);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .highlight-text {
+      font-size: 0.9rem;
+      color: #b0b5c8;
+    }
+
+    /* Expertise Section */
+    #expertise {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .expertise-card {
+      padding: 2.5rem;
+      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .expertise-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .expertise-card:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .expertise-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .expertise-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .expertise-card p {
+      font-size: 0.9rem;
+      color: #b0b5c8;
+      line-height: 1.7;
+    }
+
+    /* Testimonials */
+    #testimonials {
+      background: var(--navy);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      padding: 2rem;
+      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      position: absolute;
+      top: -10px;
+      left: 0;
+      opacity: 0.3;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: #b0b5c8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: #7a7f92;
+      margin-top: 0.3rem;
+    }
+
+    /* Thought Leadership */
+    /* Credentials Section */
+    #credentials {
+      background: var(--navy);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .creds-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .creds-category {
+      padding: 2rem;
+      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .creds-category h4 {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .cred-item {
+      font-size: 0.85rem;
+      color: #b0b5c8;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cred-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-card {
+      padding: 2rem;
+      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .contact-card h3 {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .contact-link {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--gold);
+    }
+
+    .contact-subtext {
+      font-size: 0.8rem;
+      color: #7a7f92;
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      text-align: center;
+      color: #7a7f92;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .expertise-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .creds-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      nav {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 6rem 2rem 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .expertise-grid,
+      .creds-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .executive-grid,
+      .testimonials-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .credentials-bar {
+        gap: 2rem;
+        padding: 2rem 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.75rem;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-brand">PGK</div>
+    <div class="nav-links">
+      <a href="#executive">Executive</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#testimonials">Recognition</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact" class="cta-nav">Book Time</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Executive Authority & Technical Excellence</div>
+      <h1>Pandian G K</h1>
+      <p class="hero-subtitle">Leading Enterprise-Scale Network & Security Transformation Across APAC</p>
+      <div class="hero-divider"></div>
+      <p class="hero-description">
+        16 years architecting Fortune 500 infrastructure solutions. Recognized speaker, published thought leader, and strategic advisor to enterprise executives navigating digital transformation and advanced network architecture.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Let's Connect</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('testimonials').scrollIntoView({behavior: 'smooth'})">See Recommendations</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials Bar -->
+  <section class="credentials-bar">
+    <div class="credential-item">
+      <span class="credential-number">16+</span>
+      <span class="credential-label">Years of Experience</span>
+    </div>
+    <div class="credential-item">
+      <span class="credential-number">30+</span>
+      <span class="credential-label">Industry Certifications</span>
+    </div>
+    <div class="credential-item">
+      <span class="credential-number">4</span>
+      <span class="credential-label">Major Awards</span>
+    </div>
+    <div class="credential-item">
+      <span class="credential-number">50+</span>
+      <span class="credential-label">Enterprise Solutions</span>
+    </div>
+  </section>
+
+  <!-- Executive Summary -->
+  <section id="executive">
+    <div class="section-header">
+      <span class="section-label">Executive Summary</span>
+      <h2 class="section-title">Strategic Leadership Profile</h2>
+    </div>
+    <div class="executive-grid">
+      <div class="executive-content">
+        <h3>A Career Built on Technical Depth & Business Impact</h3>
+        <p>
+          As a Lead Cyber-Telco Solution Architect, I operate at the nexus of complex technical challenges and enterprise business outcomes. My career trajectory spans network operations, infrastructure transformation, and strategic pre-sales leadership across tier-1 organizations including Singtel, Infosys, and Vodafone.
+        </p>
+        <p>
+          I specialize in architecting solutions that don't just solve today's problems—they scale to tomorrow's challenges. Whether designing BGP peering architectures, orchestrating global WAN transformations, or positioning Zero Trust frameworks to government CISOs, I bring both technical authority and business acumen.
+        </p>
+      </div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <span class="highlight-icon">●</span>
+          <span class="highlight-text"><strong>Founder's Mindset:</strong> Design architectures that outlast any single project. Build frameworks that teams execute independently.</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">●</span>
+          <span class="highlight-text"><strong>Enterprise Authority:</strong> Trusted advisor to C-suite executives navigating complex infrastructure decisions across APAC.</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">●</span>
+          <span class="highlight-text"><strong>Thought Leadership:</strong> Published speaker at GovWare 2024 & 2025. Facilitator for government-led quantum-safe transition initiatives.</span>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">●</span>
+          <span class="highlight-text"><strong>Track Record:</strong> Contributed to USD 100M+ annual revenue delivery. Recognized with 4 major professional awards.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Expertise -->
+  <section id="expertise">
+    <div class="section-header">
+      <span class="section-label">Core Expertise</span>
+      <h2 class="section-title">Strategic Competencies</h2>
+      <p class="section-subtitle">Enterprise-grade technical leadership across networking, security, and program management at scale</p>
+    </div>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="expertise-icon">🌐</div>
+        <h4>BGP & Internet Peering</h4>
+        <p>Deep expertise in internet interconnect architecture, edge capacity planning, and complex multi-stakeholder peering negotiations across APAC.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">🔐</div>
+        <h4>Zero Trust & SASE</h4>
+        <p>Architected and implemented Zero Trust frameworks and modern security-as-a-service solutions for enterprise and government sectors.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⚙️</div>
+        <h4>Program Leadership</h4>
+        <p>Orchestrated multi-stakeholder programs spanning technical delivery, budget optimization, and organizational transformation at enterprise scale.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">☁️</div>
+        <h4>Hybrid Cloud & Interconnect</h4>
+        <p>Designed multi-cloud connectivity strategies with direct hyperscaler integration. Managed interconnect economics and capacity planning.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">🏗️</div>
+        <h4>Infrastructure Design</h4>
+        <p>Architected large-scale data center solutions, DCI frameworks, and resilience strategies for mission-critical environments.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">📊</div>
+        <h4>Strategic Advisory</h4>
+        <p>Advise enterprise executives on technology roadmaps, competitive positioning, and digital transformation strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recognition & Testimonials -->
+  <section id="testimonials">
+    <div class="section-header">
+      <span class="section-label">What Leaders & Peers Say</span>
+      <h2 class="section-title">Recommendations from My Network</h2>
+      <p class="section-subtitle">From directors, managers, clients, and colleagues across my career — <a href="https://linkedin.com/in/pandian-g-k-53392657" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 600;">Connect on LinkedIn</a></p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pandian is, without doubt, the most experienced and knowledgeable technical engineer I have met. His technical understanding combined with market expertise always adds value. Customers always demand his presence and expertise."
+        </p>
+        <div class="testimonial-author">Karthikeyan Subramanian</div>
+        <div class="testimonial-role">Director, SONiC Solutions · Fujitsu</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "One of those rare folks who gets about any task upon him — from a DSL modem to an ASR router. He will get it done. If stuck, he comes back proactively. To sum up: A Prodigy — a MUST HAVE in your team."
+        </p>
+        <div class="testimonial-author">Ram Prakash J</div>
+        <div class="testimonial-role">Digital Transformation Lead · Vodafone / Fujitsu</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Strong technical knowledge with a calm and composed work attitude. It is rare to find people who can remain calm in a storm."
+        </p>
+        <div class="testimonial-author">Preethi Suja</div>
+        <div class="testimonial-role">Senior Solutions Architect · Telstra / Vodafone</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pandian is very good in learning new technologies and performing on the floor. He is a good team player with outstanding talent."
+        </p>
+        <div class="testimonial-author">Sankar Vaidyanathan</div>
+        <div class="testimonial-role">Principal Global Network Engineer · LAM Research / Vodafone</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "Pandian is an accountable and skilful technical consultant. He is always willing to help to solve customers' issues."
+        </p>
+        <div class="testimonial-author">Charlie Hung</div>
+        <div class="testimonial-role">Client Service Partner · Vodafone Global</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "He was always extremely professional and very good technically. It would be a pleasure to have the opportunity to work with him again in the future."
+        </p>
+        <div class="testimonial-author">Gavin Day</div>
+        <div class="testimonial-role">Network Support Engineer · Quilter / Aviva</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section id="credentials">
+    <div class="section-header">
+      <span class="section-label">Professional Credentials</span>
+      <h2 class="section-title">Certifications & Recognition</h2>
+      <p class="section-subtitle">30+ industry certifications across security, networking, cloud, and zero trust architecture</p>
+    </div>
+    <div class="creds-grid">
+      <div class="creds-category">
+        <h4>Security & Risk</h4>
+        <div class="cred-item">CISSP</div>
+        <div class="cred-item">CCSP</div>
+        <div class="cred-item">ZTCA</div>
+        <div class="cred-item">Palo Alto PCNSE</div>
+        <div class="cred-item">Cisco Champion 2023</div>
+      </div>
+      <div class="creds-category">
+        <h4>Networking & SD-WAN</h4>
+        <div class="cred-item">Cisco SD-WAN Specialist</div>
+        <div class="cred-item">Aruba SD-WAN Expert</div>
+        <div class="cred-item">Silver Peak SPSX</div>
+        <div class="cred-item">Cisco Meraki CMNA</div>
+        <div class="cred-item">Riverbed RCSA</div>
+      </div>
+      <div class="creds-category">
+        <h4>Cloud & Infrastructure</h4>
+        <div class="cred-item">Azure Network Engineer</div>
+        <div class="cred-item">Oracle Cloud OCI</div>
+        <div class="cred-item">AWS Solutions Architect</div>
+        <div class="cred-item">GCP Professional</div>
+        <div class="cred-item">ITIL Foundation</div>
+      </div>
+      <div class="creds-category">
+        <h4>Professional Memberships</h4>
+        <div class="cred-item">ACM Member</div>
+        <div class="cred-item">ISC² Chapter</div>
+        <div class="cred-item">ISACA Member</div>
+        <div class="cred-item">SCS Member</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Engagement -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-title">Stay Connected & Collaborate</h2>
+      <p class="section-subtitle">Open to meaningful conversations, strategic partnerships, and thought leadership collaborations</p>
+    </div>
+    <div class="contact-content">
+      <div class="contact-grid" style="grid-template-columns: 1fr 1fr 1fr; max-width: 900px;">
+        <div class="contact-card">
+          <h3>Book My Time</h3>
+          <a href="https://calendly.com/gkpandian1/30min" class="contact-link" target="_blank">
+            Schedule a Call
+          </a>
+          <div class="contact-subtext">30-minute conversation</div>
+        </div>
+        <div class="contact-card">
+          <h3>Connect on LinkedIn</h3>
+          <a href="https://linkedin.com/in/pandian-g-k-53392657" class="contact-link" target="_blank">
+            View My Profile
+          </a>
+          <div class="contact-subtext">Professional networking</div>
+        </div>
+        <div class="contact-card">
+          <h3>Send Feedback</h3>
+          <a href="https://formspree.io/f/xykbnojb" class="contact-link" target="_blank">
+            Share Thoughts
+          </a>
+          <div class="contact-subtext">Questions & feedback</div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <p style="color: #7a7f92; margin-top: 2rem; font-size: 0.85rem;">
+        Based in Singapore • Open to APAC collaborations • Interested in meaningful engagement
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>Pandian G K</div>
+    <div class="footer-divider"></div>
+    <div>Executive & Technical Authority • Enterprise Architecture & Leadership</div>
+  </footer>
+
+</body>
+</html>
