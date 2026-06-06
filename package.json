@@ -1,0 +1,11 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Pandian G K Portfolio Website",
+  "scripts": {
+    "build": "echo 'Static site - no build step required'"
+  },
+  "keywords": [],
+  "author": "Pandian G K",
+  "license": "ISC"
+}
