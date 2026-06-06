@@ -15,6 +15,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
+     HAMBURGER / MOBILE NAV
+     ========================================================================== */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  const openMobileNav = () => {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileNav.classList.add('open');
+    mobileNav.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMobileNav = () => {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.contains('open') ? closeMobileNav() : openMobileNav();
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (!link.classList.contains('trigger-booking')) closeMobileNav();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
+    });
+  }
+
+  /* ==========================================================================
      SCROLL FADE-IN ANIMATION (INTERSECTION OBSERVER)
      ========================================================================== */
   const animatedElements = document.querySelectorAll('.scroll-animate');
@@ -343,6 +381,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (carouselArea) {
       carouselArea.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
       carouselArea.addEventListener('mouseleave', startAutoplay);
+    }
+
+    // Touch swipe support for mobile
+    const carouselViewport = document.querySelector('.carousel-viewport');
+    if (carouselViewport) {
+      let touchStartX = 0;
+      carouselViewport.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      carouselViewport.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? nextSlide() : prevSlide();
+          resetAutoplay();
+        }
+      }, { passive: true });
     }
   }
 
